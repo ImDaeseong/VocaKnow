@@ -59,6 +59,24 @@ namespace WindowsFormsApplication1
             }
         }
 
+        private void createTableRegKatas()
+        {
+            try
+            {
+                string query = "CREATE TABLE RegKatas ( " +
+                    "rIndex int," +
+                    "KataKor varchar(200)," +
+                    "KataIndo varchar(200)," +
+                    "KataIndoTambah varchar(200));";
+                SQLiteCommand cmd = new SQLiteCommand(query, _connection);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }        
+        }
+
         private void insertKatas(string query)
         {
             try
@@ -205,6 +223,7 @@ namespace WindowsFormsApplication1
             if (bFirst)
             {
                 createTableKatas();
+                createTableRegKatas();
                 ReadFile();
             }
 
